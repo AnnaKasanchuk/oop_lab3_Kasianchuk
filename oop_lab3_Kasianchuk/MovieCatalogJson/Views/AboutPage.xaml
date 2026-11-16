@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieCatalogJson.Views.AboutPage"
+             Title="Про програму">
+
+    <VerticalStackLayout Padding="20" Spacing="12">
+        <Label Text="Каталог фільмів — обробка JSON" FontSize="22" FontAttributes="Bold" />
+        <Label Text="{Binding StudentInfo}" />
+        <Label Text="{Binding Description}" />
+        <Button Text="Закрити" Clicked="OnCloseClicked" HorizontalOptions="Start" />
+    </VerticalStackLayout>
+</ContentPage>

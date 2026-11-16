@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieCatalogJson.MainPage"
+             Title="Каталог фільмів">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="10" RowSpacing="8">
+
+        <!-- Кнопки -->
+        <HorizontalStackLayout Grid.Row="0" Spacing="8">
+            <Button Text="Відкрити файл" Command="{Binding OpenFileCommand}" />
+            <Button Text="Зберегти" Command="{Binding SaveFileCommand}" />
+            <Button Text="Додати" Command="{Binding AddMovieCommand}" />
+            <Button Text="Редагувати" Command="{Binding EditMovieCommand}" />
+            <Button Text="Видалити" Command="{Binding DeleteMovieCommand}" />
+            <Button Text="Про програму" Command="{Binding OpenAboutCommand}" />
+        </HorizontalStackLayout>
+
+        <!-- Пошук -->
+        <Grid Grid.Row="1" ColumnDefinitions="2*,*,*,Auto" ColumnSpacing="8">
+            <Entry Grid.Column="0" Placeholder="Назва або режисер"
+                   Text="{Binding SearchQuery}" />
+            <Picker Grid.Column="1" Title="Жанр"
+                    ItemsSource="{Binding Genres}"
+                    SelectedItem="{Binding SelectedGenre}" />
+            <VerticalStackLayout Grid.Column="2">
+                <Label Text="{Binding MinRating, StringFormat='Мін. рейтинг: {0:F1}'}" />
+                <Slider Minimum="0" Maximum="10" Value="{Binding MinRating}" />
+            </VerticalStackLayout>
+            <Button Grid.Column="3" Text="Застосувати фільтр"
+                    Command="{Binding ApplyLinqFilterCommand}" />
+        </Grid>
+
+        <!-- Заголовок таблиці -->
+        <Grid Grid.Row="2" ColumnDefinitions="2*, 2*, *, 1.5*, *" Padding="10" BackgroundColor="#E0E0E0">
+            <Label Grid.Column="0" Text="Назва" FontAttributes="Bold" TextColor="Black" />
+            <Label Grid.Column="1" Text="Режисер" FontAttributes="Bold" TextColor="Black" />
+            <Label Grid.Column="2" Text="Рік" FontAttributes="Bold" TextColor="Black" />
+            <Label Grid.Column="3" Text="Жанр" FontAttributes="Bold" TextColor="Black" />
+            <Label Grid.Column="4" Text="Рейтинг" FontAttributes="Bold" TextColor="Black" />
+        </Grid>
+
+        <!-- Рядки даних -->
+        <CollectionView Grid.Row="3"
+                        ItemsSource="{Binding DisplayedMovies}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedMovie}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="2*, 2*, *, 1.5*, *" Padding="10">
+                        <Label Grid.Column="0" Text="{Binding Title}" />
+                        <Label Grid.Column="1" Text="{Binding Director}" />
+                        <Label Grid.Column="2" Text="{Binding ReleaseYear}" />
+                        <Label Grid.Column="3" Text="{Binding Genre}" />
+                        <Label Grid.Column="4" Text="{Binding Rating}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

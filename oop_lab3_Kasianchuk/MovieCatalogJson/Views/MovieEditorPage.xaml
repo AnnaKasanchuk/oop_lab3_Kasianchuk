@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieCatalogJson.Views.MovieEditorPage"
+             Title="{Binding PageTitle}">
+
+    <VerticalStackLayout Padding="20" Spacing="8">
+        <Label Text="{Binding PageTitle}" FontSize="22" FontAttributes="Bold" />
+
+        <Label Text="Назва" />
+        <Entry Text="{Binding CurrentMovie.Title}" />
+
+        <Label Text="Режисер" />
+        <Entry Text="{Binding CurrentMovie.Director}" />
+
+        <Label Text="Рік випуску" />
+        <Entry Text="{Binding CurrentMovie.ReleaseYear}" Keyboard="Numeric" />
+
+        <Label Text="Жанр" />
+        <Entry Text="{Binding CurrentMovie.Genre}" />
+
+        <Label Text="Рейтинг (0–10)" />
+        <Entry Text="{Binding CurrentMovie.Rating}" Keyboard="Numeric" />
+
+        <HorizontalStackLayout Spacing="10" Margin="0,16,0,0">
+            <Button Text="Зберегти" Command="{Binding SaveCommand}" />
+            <Button Text="Скасувати" Command="{Binding CancelCommand}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
